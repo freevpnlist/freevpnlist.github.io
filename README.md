@@ -1,4 +1,4 @@
-# 免费VPN列表推荐 | 2月27日18.4M/S|免费SSR/V2ray/Shadowrocket/Clash免费节点订阅分享  更新时间 2025-02-27 23:18:30
+# 免费VPN列表推荐 | 2月28日18M/S|免费Clash/SSR/Shadowrocket/V2ray免费节点订阅分享  更新时间 2025-02-28 06:56:51
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://freevpnlist.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### Clash订阅链接
 
-- https://freevpnlist.github.io/uploads/2025/02/0-20250227.yaml
-- https://freevpnlist.github.io/uploads/2025/02/1-20250227.yaml
-- https://freevpnlist.github.io/uploads/2025/02/2-20250227.yaml
-- https://freevpnlist.github.io/uploads/2025/02/3-20250227.yaml
-- https://freevpnlist.github.io/uploads/2025/02/4-20250227.yaml
+- https://freevpnlist.github.io/uploads/2025/02/0-20250228.yaml
+- https://freevpnlist.github.io/uploads/2025/02/1-20250228.yaml
+- https://freevpnlist.github.io/uploads/2025/02/2-20250228.yaml
+- https://freevpnlist.github.io/uploads/2025/02/3-20250228.yaml
+- https://freevpnlist.github.io/uploads/2025/02/4-20250228.yaml
 
 ### V2ray订阅链接
 
-- https://freevpnlist.github.io/uploads/2025/02/0-20250227.txt
-- https://freevpnlist.github.io/uploads/2025/02/1-20250227.txt
-- https://freevpnlist.github.io/uploads/2025/02/2-20250227.txt
-- https://freevpnlist.github.io/uploads/2025/02/3-20250227.txt
-- https://freevpnlist.github.io/uploads/2025/02/4-20250227.txt
+- https://freevpnlist.github.io/uploads/2025/02/0-20250228.txt
+- https://freevpnlist.github.io/uploads/2025/02/1-20250228.txt
+- https://freevpnlist.github.io/uploads/2025/02/2-20250228.txt
+- https://freevpnlist.github.io/uploads/2025/02/3-20250228.txt
+- https://freevpnlist.github.io/uploads/2025/02/4-20250228.txt
 
 ### Sing-box订阅链接
 
-- https://freevpnlist.github.io/uploads/2025/02/20250227.json
+- https://freevpnlist.github.io/uploads/2025/02/20250228.json
 
 ## 更多clash节点订阅 ：
 
