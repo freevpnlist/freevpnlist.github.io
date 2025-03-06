@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freevpnlist.github.io/news/article-67439.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>ASP.NET Core使用EF创建模型(索引、备用键、继承、支持字段)_实用技巧</title>
+        <meta name="description" content="4.3.1控制何时使用字段  4.3.2没有属性的字段 目录  			  目录  1.索引  1.1约定 1.2数据批注 1.3Fluent API  2.备用键  2.1约定 2.2数据注释 2.3" />
+        <link rel="icon" href="/assets/website/img/clashvergerev/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="免费VPN列表推荐 订阅机场节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freevpnlist.github.io/news/article-67439.htm" />
+    <meta property="og:site_name" content="免费VPN列表推荐 订阅机场节点官网" />
+    <meta property="og:title" content="ASP.NET Core使用EF创建模型(索引、备用键、继承、支持字段)_实用技巧" />
+    <meta property="og:image" content="https://freevpnlist.github.io/uploads/20240722-1/e1ee65c36a3c2e392f876f979a871b36.webp" />
+        <meta property="og:release_date" content="2025-03-05T11:10:19" />
+    <meta property="og:updated_time" content="2025-03-05T11:10:19" />
+        <meta property="og:description" content="4.3.1控制何时使用字段  4.3.2没有属性的字段 目录  			  目录  1.索引  1.1约定 1.2数据批注 1.3Fluent API  2.备用键  2.1约定 2.2数据注释 2.3" />
+        
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/bootstrap-4.5.0.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/animate.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/LineIcons.2.0.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/owl.carousel.2.3.4.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/owl.theme.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/nivo-lightbox.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/main.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/responsive.css">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="ASP.NET Core使用EF创建模型(索引、备用键、继承、支持字段)_实用技巧">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KVMHR9VKMC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KVMHR9VKMC');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <header class="blog-hero-area">
+                <div class="overlay">
+            <span></span>
+            <span></span>
+        </div>
+        <div class="navbar-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/">
+                                                            <span>免费VPN列表推荐</span>
+                                                        </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ml-auto">
+                                                                        <li class="nav-item">
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                    </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="home">
+            <div class="container">
+                <div class="row justify-content-lg-center">
+                    <div class="col-lg-10">
+                        <div class="contents text-center">
+                            <h1>ASP.NET Core使用EF创建模型(索引、备用键、继承、支持字段)_实用技巧</h1>
+                            <div class="post-meta">
+                                <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="business-plan">
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				  			 <div id="log-box">  				<div id="catalog"><ul id="catalog-ul"> <li><i class="be be-arrowright"></i> <a href="#title-0" title="4.3.1控制何时使用字段">4.3.1控制何时使用字段</a></li> <li><i class="be be-arrowright"></i> <a href="#title-1" title="4.3.2没有属性的字段">4.3.2没有属性的字段</a></li> </ul><span class="log-zd"><span class="log-close"><a title="隐藏目录"><i class="be be-cross"></i><strong>目录</strong></a></span></span></div>  			</div> <div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">1.索引</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_0_0" rel="nofollow">1.1约定</a></li> <li><a href="#_lab2_0_1" rel="nofollow">1.2数据批注</a></li> <li><a href="#_lab2_0_2" rel="nofollow">1.3Fluent API</a></li> </ul> <li><a href="#_label1" rel="nofollow">2.备用键</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_1_3" rel="nofollow">2.1约定</a></li> <li><a href="#_lab2_1_4" rel="nofollow">2.2数据注释</a></li> <li><a href="#_lab2_1_5" rel="nofollow">2.3Fluent API</a></li> </ul> <li><a href="#_label2" rel="nofollow">3.继承</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_2_6" rel="nofollow">3.1约定</a></li> </ul> <li><a href="#_label3" rel="nofollow">4.支持字段</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_3_7" rel="nofollow">4.1约定</a></li> <li><a href="#_lab2_3_8" rel="nofollow">4.2数据注释</a></li> <li><a href="#_lab2_3_9" rel="nofollow">4.3Fluent API</a></li> <ul class="third_class_ul"> <li><a href="#_label3_3_9_0" rel="nofollow">4.3.1控制何时使用字段</a></li> <li><a href="#_label3_3_9_1" rel="nofollow">4.3.2没有属性的字段</a></li> </ul> </ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>1.索引</h2> <p>索引是跨多个数据存储区的常见概念。尽管它们在数据存储中的实现可能会有所不同，但也可用于基于列（或一组列）更高效地进行查找。</p> <p class="maodian"><a name="_lab2_0_0" rel="nofollow"></a></p> <h3>1.1约定</h3> <p>按照约定，将在用作外键的每个属性（或一组属性）中创建索引。</p> <p class="maodian"><a name="_lab2_0_1" rel="nofollow"></a></p> <h3>1.2数据批注</h3> <p>不能使用数据批注创建索引。</p> <p class="maodian"><a name="_lab2_0_2" rel="nofollow"></a></p> <h3>1.3Fluent API</h3> <p>您可以使用熟知的API来指定单个属性的索引。默认情况下，索引不是唯一的。</p> <div class="ay1code"> <pre class="brush:csharp;">class MyContext : DbContext  {      public DbSet&lt;Blog&gt; Blogs { get; set; }      protected override void OnModelCreating(ModelBuilder modelBuilder)      {          modelBuilder.Entity&lt;Blog&gt;()              //配置索引              .HasIndex(b =&gt; b.Url);      }  }  public class Blog  {      public int BlogId { get; set; }      public string Url { get; set; }  }</pre> </div> <p>您还可以指定索引应是唯一的，这意味着对于给定的属性，不能有两个实体具有相同的值。</p> <div class="ay1code"> <pre class="brush:csharp;">modelBuilder.Entity&lt;Blog&gt;()  .HasIndex(b =&gt; b.Url)  .IsUnique();</pre> </div> <p>您还可以为多个列指定索引。</p> <div class="ay1code"> <pre class="brush:csharp;">class MyContext : DbContext  {      public DbSet&lt;Person&gt; People { get; set; }      protected override void OnModelCreating(ModelBuilder modelBuilder)      {          modelBuilder.Entity&lt;Person&gt;()              .HasIndex(p =&gt; new { p.FirstName, p.LastName });      }  }  public class Person  {      public int PersonId { get; set; }      public string FirstName { get; set; }      public string LastName { get; set; }  }</pre> </div> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>2.备用键</h2> <p>备用键与主键相对，用作每个实体实例的备用唯一标识符。备用键可用作关系的目标。使用关系数据库时，这将映射到备用键列上的唯一索引/约束和引用列的一个或多个外键约束的概念。系统通常会在需要时为你引入备用键，你无需手动配置它们。</p> <p class="maodian"><a name="_lab2_1_3" rel="nofollow"></a></p> <h3>2.1约定</h3> <p>按照约定，系统将在识别属性（不是主键）时为你引入备用键，充当关系的目标。</p> <div class="ay1code"> <pre class="brush:csharp;">class MyContext : DbContext  {      public DbSet&lt;Blog&gt; Blogs { get; set; }      public DbSet&lt;Post&gt; Posts { get; set; }      protected override void OnModelCreating(ModelBuilder modelBuilder)      {          modelBuilder.Entity&lt;Post&gt;()              .HasOne(p =&gt; p.Blog)              .WithMany(b =&gt; b.Posts)              .HasForeignKey(p =&gt; p.BlogUrl)              .HasPrincipalKey(b =&gt; b.Url);      }  }  public class Blog  {      public int BlogId { get; set; }      public string Url { get; set; }            public List&lt;Post&gt; Posts { get; set; }  }  public class Post  {      public int PostId { get; set; }      public string Title { get; set; }      public string Content { get; set; }      //备用键      public string BlogUrl { get; set; }      public Blog Blog { get; set; }  }</pre> </div> <p class="maodian"><a name="_lab2_1_4" rel="nofollow"></a></p> <h3>2.2数据注释</h3> <p>不能使用数据注释配置备用键。</p> <p class="maodian"><a name="_lab2_1_5" rel="nofollow"></a></p> <h3>2.3Fluent API</h3> <p>你可以使用熟知的API将单个属性配置为备用密钥。</p> <div class="ay1code"> <pre class="brush:csharp;">class MyContext : DbContext  {      public DbSet&lt;Car&gt; Cars { get; set; }        protected override void OnModelCreating(ModelBuilder modelBuilder)      {          modelBuilder.Entity&lt;Car&gt;()              //配置为备用密钥              .HasAlternateKey(c =&gt; c.LicensePlate);      }  }  class Car  {      public int CarId { get; set; }      public string LicensePlate { get; set; }      public string Make { get; set; }      public string Model { get; set; }  }  你还可以使用熟知的API将多个属性配置为备用密钥（称为复合备用键）。  class MyContext : DbContext  {      public DbSet&lt;Car&gt; Cars { get; set; }      protected override void OnModelCreating(ModelBuilder modelBuilder)      {          modelBuilder.Entity&lt;Car&gt;()              //配置为备用密钥              .HasAlternateKey(c =&gt; new { c.State, c.LicensePlate });      }  }  class Car  {      public int CarId { get; set; }      public string State { get; set; }      public string LicensePlate { get; set; }      public string Make { get; set; }      public string Model { get; set; }  }</pre> </div> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>3.继承</h2> <p>EF模型中的继承用于控制如何在数据库中表示实体类中的继承。</p> <p class="maodian"><a name="_lab2_2_6" rel="nofollow"></a></p> <h3>3.1约定</h3> <p>按照约定，由数据库提供商确定如何在数据库中表示继承。有关如何使用关系数据库提供程序来处理此情况的详细说明。如果模型中显式包括两个或更多个继承类型，则EF仅会设置继承。EF不会扫描模型中未包含的基类型或派生类型。可以通过为继承层次结构中的每个类型公开DbSet，在模型中包含类型。</p> <div class="ay1code"> <pre class="brush:csharp;">class MyContext : DbContext  {      public DbSet&lt;Blog&gt; Blogs { get; set; }      public DbSet&lt;RssBlog&gt; RssBlogs { get; set; }  }  public class Blog  {      public int BlogId { get; set; }      public string Url { get; set; }  }  public class RssBlog : Blog  {      public string RssUrl { get; set; }  }</pre> </div> <p>如果不想公开层次结构中一个或多个实体的DbSet，可以使用熟知的API来确保它们包含在模型中。如果不依赖约定，则可以使用HasBaseType显式指定基类型。</p> <div class="ay1code"> <pre class="brush:csharp;">class MyContext : DbContext  {      public DbSet&lt;Blog&gt; Blogs { get; set; }      protected override void OnModelCreating(ModelBuilder modelBuilder)      {          modelBuilder.Entity&lt;RssBlog&gt;().HasBaseType&lt;Blog&gt;();      }  }</pre> </div> <p class="maodian"><a name="_label3" rel="nofollow"></a></p> <h2>4.支持字段</h2> <p>支持字段允许EF读取和写入字段，而不是属性。当使用类中的封装来限制或通过应用程序代码对数据访问进行限制时，这可能很有用，但在不使用这些限制的情况下，应从数据库中读取或写入值。</p> <p class="maodian"><a name="_lab2_3_7" rel="nofollow"></a></p> <h3>4.1约定</h3> <p>按照约定，将发现以下字段作为给定属性的支持字段（按优先级顺序列出）。仅为模型中包含的属性发现字段。</p> <div class="ay1code"> <pre class="brush:csharp;">public class Blog  {      private string _url;      public int BlogId { get; set; }      public string Url      {          get { return _url; }          set { _url = value; }      }  }</pre> </div> <p>配置了支持字段后，当从数据库具体化实体实例（而不是使用属性资源库）时，EF将直接写入该字段。如果EF需要在其他时间读取或写入值，则它将使用属性（如果可能）。例如，如果EF需要更新某个属性的值，则它将使用属性setter（如果已定义）。如果该属性为只读，则它将写入字段。</p> <p class="maodian"><a name="_lab2_3_8" rel="nofollow"></a></p> <h3>4.2数据注释</h3> <p>不能通过数据批注配置支持字段。</p> <p class="maodian"><a name="_lab2_3_9" rel="nofollow"></a></p> <h3>4.3Fluent API</h3> <p>你可以使用熟知的API来配置属性的支持字段。</p> <div class="ay1code"> <pre class="brush:csharp;">class MyContext : DbContext  {      public DbSet&lt;Blog&gt; Blogs { get; set; }      protected override void OnModelCreating(ModelBuilder modelBuilder)      {          modelBuilder.Entity&lt;Blog&gt;()              .Property(b =&gt; b.Url)              .HasField("_validatedUrl");      }  }  public class Blog  {      private string _validatedUrl;      public int BlogId { get; set; }      public string Url      {          get { return _validatedUrl; }      }      public void SetUrl(string url)      {          using (var client = new HttpClient())          {              var response = client.GetAsync(url).Result;              response.EnsureSuccessStatusCode();          }          _validatedUrl = url;      }  }</pre> </div> <p class="maodian"><a name="_label3_3_9_0" rel="nofollow"></a></p> <span class="directory"></span><h4 id="title-0">4.3.1控制何时使用字段</h4> <p>可以配置EF何时使用字段或属性。有关支持的选项，请参阅PropertyAccessMode枚举。</p> <div class="ay1code"> <pre class="brush:csharp;">modelBuilder.Entity&lt;Blog&gt;()      .Property(b =&gt; b.Url)      .HasField("_validatedUrl")      .UsePropertyAccessMode(PropertyAccessMode.Field);</pre> </div> <p class="maodian"><a name="_label3_3_9_1" rel="nofollow"></a></p> <span class="directory"></span><h4 id="title-1">4.3.2没有属性的字段</h4> <p>你还可以在你的模型中创建一个概念属性，该属性在实体类中不具有相应的CLR属性，而是使用字段来存储实体中的数据。这不同于阴影属性，其中的数据存储在更改跟踪器中。如果实体类使用方法获取或设置值，通常会使用此方法。可以在Property(...) API中为EF指定字段的名称。如果没有具有给定名称的属性，则EF将查找字段。</p> <div class="ay1code"> <pre class="brush:csharp;">class MyContext : DbContext  {      public DbSet&lt;Blog&gt; Blogs { get; set; }      protected override void OnModelCreating(ModelBuilder modelBuilder)      {          modelBuilder.Entity&lt;Blog&gt;()              .Property("_validatedUrl");      }  }  public class Blog  {      private string _validatedUrl;      public int BlogId { get; set; }      public string GetUrl()      {          return _validatedUrl;      }      public void SetUrl(string url)      {          using (var client = new HttpClient())          {              var response = client.GetAsync(url).Result;              response.EnsureSuccessStatusCode();          }          _validatedUrl = url;      }  }</pre> </div> <p>您还可以选择为属性指定名称，而不是字段名称。然后，在创建模型时使用此名称，最值得注意的是，该名称将用于在数据库中映射到的列名称。</p> <div class="ay1code"> <pre class="brush:csharp;">protected override void OnModelCreating(ModelBuilder modelBuilder)  {      modelBuilder.Entity&lt;Blog&gt;()          .Property&lt;string&gt;("Url")          .HasField("_validatedUrl");  }</pre> </div> <p>如果实体类中没有属性，则可以在LINQ查询中使用EF.Property(...)方法来引用概念上是模型的一部分的属性。</p> <div class="ay1code"> <pre class="brush:csharp;">var blogs = db.blogs.OrderBy(b =&gt; EF.Property&lt;string&gt;(b, "Url"));</pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-66814.htm">宠物诊疗许可证多少钱办理（宠物医院诊疗许可证申请材料）</a></p>
+                                        <p>下一个：<a href="/news/article-67440.htm">深圳宠物领养网站有哪些（深圳市领养宠物中心）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-64291.htm" title="Redis+Caffeine两级缓存，让访问速度纵享丝滑">Redis+Caffeine两级缓存，让访问速度纵享丝滑</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-3-clash-v2ray-ss-ssr.htm" title="免费VPN列表推荐 | 3月3日18.6M/S|免费SSR/Clash/V2ray/Shadowrocket免费节点订阅分享">免费VPN列表推荐 | 3月3日18.6M/S|免费SSR/Clash/V2ray/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-4-node-share.htm" title="免费VPN列表推荐 | 3月4日18.8M/S|免费V2ray/SSR/Clash/Shadowrocket免费节点订阅分享">免费VPN列表推荐 | 3月4日18.8M/S|免费V2ray/SSR/Clash/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-65568.htm" title="哈尔滨农大宠物医院电话号码（哈尔滨农大兽医院）">哈尔滨农大宠物医院电话号码（哈尔滨农大兽医院）</a></li>
+                        <li class="py-2"><a href="/news/article-66188.htm" title="动物接种疫苗的注意事项包括什么（动物注射疫苗注意事项）">动物接种疫苗的注意事项包括什么（动物注射疫苗注意事项）</a></li>
+                        <li class="py-2"><a href="/news/article-66813.htm" title="Python用re模块实现简易tokenizer_在线工具">Python用re模块实现简易tokenizer_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-67440.htm" title="深圳宠物领养网站有哪些（深圳市领养宠物中心）">深圳宠物领养网站有哪些（深圳市领养宠物中心）</a></li>
+                        <li class="py-2"><a href="/news/article-64941.htm" title="宠物领养条约最新版（宠物领养协议具有法律效应吗）">宠物领养条约最新版（宠物领养协议具有法律效应吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-27-node-share.htm" title="免费VPN列表推荐 | 2月27日21.6M/S|免费SSR/V2ray/Clash免费节点订阅分享">免费VPN列表推荐 | 2月27日21.6M/S|免费SSR/V2ray/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-64336.htm" title="springboot 小技巧(一)(restful接口参数校验，自定义校验规则)">springboot 小技巧(一)(restful接口参数校验，自定义校验规则)</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+    <section id="footer-Content">
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="site-info text-center">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">免费VPN列表推荐 订阅机场节点官网</a> 版权所有
+                            <br />
+                            Powered by WordPress
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>
+<a href="#" class="back-to-top">
+    <i class="lni lni-chevron-up"></i>
+</a>
+<div id="preloader">
+    <div class="loader" id="loader-1"></div>
+</div>
+<script src="/assets/website/js/frontend/clashvergerev/vendor/modernizr-3.7.1.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/vendor/jquery-3.5.1-min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/popper.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/bootstrap-4.5.0.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/owl.carousel.2.3.4.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/nivo-lightbox.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/jquery.magnific-popup.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/form-validator.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/contact-form-script.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/main.js"></script>
+<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+<script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
