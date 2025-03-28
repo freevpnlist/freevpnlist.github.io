@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freevpnlist.github.io/news/article-82892.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Spring Cloud中使用Feign实现负载均衡详解</title>
+        <meta name="description" content="本文属于【夯实Spring Cloud】系列文章，该系列旨在用通俗易懂的语言，带大家了解和学习Spring Cloud技术，希望能给读者带来一些干货。系列目录如下：  【夯实Spring Cloud】" />
+        <link rel="icon" href="/assets/website/img/clashvergerev/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="免费VPN列表推荐 订阅机场节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freevpnlist.github.io/news/article-82892.htm" />
+    <meta property="og:site_name" content="免费VPN列表推荐 订阅机场节点官网" />
+    <meta property="og:title" content="Spring Cloud中使用Feign实现负载均衡详解" />
+    <meta property="og:image" content="https://freevpnlist.github.io/uploads/20240722-1/c3081aeb72ccddcbbf96271511274f19.webp" />
+        <meta property="og:release_date" content="2025-03-28T09:51:51" />
+    <meta property="og:updated_time" content="2025-03-28T09:51:51" />
+        <meta property="og:description" content="本文属于【夯实Spring Cloud】系列文章，该系列旨在用通俗易懂的语言，带大家了解和学习Spring Cloud技术，希望能给读者带来一些干货。系列目录如下：  【夯实Spring Cloud】" />
+        
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/bootstrap-4.5.0.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/animate.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/LineIcons.2.0.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/owl.carousel.2.3.4.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/owl.theme.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/nivo-lightbox.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/main.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/responsive.css">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Spring Cloud中使用Feign实现负载均衡详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KVMHR9VKMC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KVMHR9VKMC');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <header class="blog-hero-area">
+                <div class="overlay">
+            <span></span>
+            <span></span>
+        </div>
+        <div class="navbar-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/">
+                                                            <span>免费VPN列表推荐</span>
+                                                        </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ml-auto">
+                                                                        <li class="nav-item">
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                    </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="home">
+            <div class="container">
+                <div class="row justify-content-lg-center">
+                    <div class="col-lg-10">
+                        <div class="contents text-center">
+                            <h1>Spring Cloud中使用Feign实现负载均衡详解</h1>
+                            <div class="post-meta">
+                                <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="business-plan">
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>本文属于【夯实Spring Cloud】系列文章，该系列旨在用通俗易懂的语言，带大家了解和学习Spring Cloud技术，希望能给读者带来一些干货。系列目录如下：</p> <blockquote> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/eson_15/article/details/83651732"  rel="nofollow">【夯实Spring Cloud】Dubbo沉睡5年，Spring Cloud开始崛起！</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/eson_15/article/details/83585344"  rel="nofollow">【夯实Spring Cloud】Spring Cloud中基于maven的分布式项目框架的搭建</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/eson_15/article/details/85002026"  rel="nofollow">【夯实Spring Cloud】Spring Cloud中的Eureka服务注册与发现详解</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/eson_15/article/details/85226439"  rel="nofollow">【夯实Spring Cloud】Spring Cloud中如何完善Eureka中的服务信息</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/eson_15/article/details/85252697"  rel="nofollow">【夯实Spring Cloud】Spring Cloud中使用Eureka集群搭建高可用服务注册中心</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/eson_15/article/details/85561179"  rel="nofollow">【夯实Spring Cloud】Spring Cloud中的Eureka和Zookeeper的区别在哪？</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/eson_15/article/details/86182477"  rel="nofollow">【夯实Spring Cloud】Spring Cloud中使用Ribbon实现负载均衡详解（上）</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/eson_15/article/details/86225272"  rel="nofollow">【夯实Spring Cloud】Spring Cloud中使用Ribbon实现负载均衡详解（下）</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/eson_15/article/details/86578207"  rel="nofollow">【夯实Spring Cloud】Spring Cloud中自定义Ribbon负载均衡策略</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/eson_15/article/details/86590402"  rel="nofollow">【夯实Spring Cloud】Spring Cloud中使用Feign实现负载均衡详</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/eson_15/article/details/86628622"  rel="nofollow">【夯实Srping Cloud】Spring Cloud中使用Hystrix实现断路器原理详解（上）</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/eson_15/article/details/86673843"  rel="nofollow">【夯实Srping Cloud】Spring Cloud中使用Hystrix实现断路器原理详解（下）</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/eson_15/article/details/86689681"  rel="nofollow">【夯实Spring Cloud】Spring Cloud中使用Zuul实现路由网关详解</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/eson_15/article/details/86715157"  rel="nofollow">【夯实Spring Cloud】Spring Cloud分布式配置中心详解</a><br /> 【夯实Spring Cloud】未完待续</p> </blockquote> <hr/> <p>前面几篇文章，对 Ribbon 负载均衡做了详细的分析，这一节来介绍一下使用 Feign 负载均衡。在介绍之前，我们先来对 Feign 做一下简单的介绍，先来理解一下什么是 Feign。</p> <h2><a id="1_Feign__21" rel="nofollow"></a>1. Feign 是什么？</h2> <p>我们看一下官方的解释：Feign 是一个声明式 WebService 客户端。使用 Feign 能让编写的 WebService 客户端更加简洁，它的使用方法式定义一个接口，然后在上面添加注解。Spring Cloud 对 Feign 进行了封装，使其支持了 Spring MVC 标准注解和 HttpMessageConverters。Feign 可以与 Eureka 和 Ribbon 组合使用以支持负载均衡。</p> <h2><a id="2__Feign_24" rel="nofollow"></a>2. 为什么要使用 Feign？</h2> <p>Feign 旨在使编写 Java Http 客户端变得更容易。</p> <p>前面在使用 Ribbon + RestTemplate 时，利用 RestTemplate 对 http 请求的封装处理，形成了一套模板化的调用方法。<strong>但是在实际开发中，由于对服务依赖的调用可能不止一处，往往一个接口会被多处调用，所以通常都会针对每个微服务自行封装一些客户端类来包装这些依赖服务的调用</strong>。</p> <p>所以，Feign 在此基础上做了进一步的封装，由它来帮助我们定义和实现依赖服务接口的定义。<strong>使用 Feign 只需要创建一个接口并使用一个注解来配置它即可</strong>。这就类似于我们在 dao 层的接口上标注 @Mapper 注解一样。这样的话，即完成了对服务提供方的接口绑定，简化了使用 Spring Cloud Ribbon 时的开发量。</p> <p>我们用实例来说明。</p> <h2><a id="3_Feign__33" rel="nofollow"></a>3. Feign 的使用</h2> <h3><a id="31__34" rel="nofollow"></a>3.1 依赖导入</h3> <pre><code class="prism language-xml"><span class="token comment">&lt;!--eureka Client--&gt;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-starter-netflix-eureka-client<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span><span class="token comment">&lt;!-- feign的支持 --&gt;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-cloud-starter-openfeign<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre> <h3><a id="32__48" rel="nofollow"></a>3.2 启动类注解配置</h3> <pre><code class="prism language-java"><span class="token annotation punctuation">@SpringBootApplication</span><span class="token annotation punctuation">@EnableEurekaClient</span><span class="token annotation punctuation">@EnableFeignClients</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">OrderConsumerFeign</span><span class="token punctuation">{<!-- --></span><span class="token keyword">public</span><span class="token keyword">static</span><span class="token keyword">void</span><span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>OrderConsumerFeign<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p>启动类需要添加注解<code>@EnableFeignClients</code>，表示启用 Feign 客户端。</p> <h3><a id="33_Feign__62" rel="nofollow"></a>3.3 Feign 客户端</h3> <p>我们先来回忆一下，提供订单的服务名称为：MICROSERVICE-ORDER，然后订单服务中提供的两个获取订单信息的接口url如下：</p> <pre><code class="prism language-java"><span class="token comment">/**  * feign客户端  * @author shengwu ni  */</span><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">"MICROSERVICE-ORDER"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token keyword">interface</span><span class="token class-name">OrderClientService</span><span class="token punctuation">{<!-- --></span><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/provider/order/get/{id}"</span><span class="token punctuation">)</span>     TOrder<span class="token function">getOrder</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">"id"</span><span class="token punctuation">)</span> Long id<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/provider/order/get/list"</span><span class="token punctuation">)</span>     List<span class="token generics function"><span class="token punctuation">&lt;</span>TOrder<span class="token punctuation">&gt;</span></span><span class="token function">getAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <p>可以看到，Feign 客户端要添加<code>@FeignClient</code> 注解，value 属性表示作用到哪个微服务上，这里表示负载均衡作用到请求订单服务上。要记住，Feign 也是客户端的负载均衡。</p> <p>方法内定义了两个接口，接口上即和普通的 SpringMVC 没什么区别，url 即订单提供服务的url。这就是 Feign 客户端，通过注解 + 接口的方式来和订单服务的接口绑定。</p> <h3><a id="34_Feign__83" rel="nofollow"></a>3.4 Feign 客户端的使用</h3> <p>定义好了 Feign 客户端接口后，我们就可以在代码里通过<code>@Resource</code> 正常引入进来，然后通过普通的方法调用即可实现对订单服务的调用，如下：</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@RestController</span><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/consumer/order"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">OrderConsumerController</span><span class="token punctuation">{<!-- --></span><span class="token comment">/**      * 上面定义的 Feign Client      */</span><span class="token annotation punctuation">@Resource</span><span class="token keyword">private</span> OrderClientService orderClientService<span class="token punctuation">;</span><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/get/{id}"</span><span class="token punctuation">)</span><span class="token keyword">public</span> TOrder<span class="token function">getOrder</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> Long id<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span> orderClientService<span class="token punctuation">.</span><span class="token function">getOrder</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/get/list"</span><span class="token punctuation">)</span><span class="token keyword">public</span> List<span class="token generics function"><span class="token punctuation">&lt;</span>TOrder<span class="token punctuation">&gt;</span></span><span class="token function">getAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span> orderClientService<span class="token punctuation">.</span><span class="token function">getAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p>启动 eureka 集群、三个订单提供服务和这个带有 Feign 的服务消费方（端口 9001）。通过在浏览器中访问：http://localhost:9001//consumer/order/get/1 可以看到，轮流访问三个订单服务。说明 Feign 默认是集成了 Ribbon 的轮询方案。</p> <h2><a id="4_Feign__Ribbon__110" rel="nofollow"></a>4. Feign 如何结合 Ribbon 切换均衡算法</h2> <p>以上就是 Feign 的使用，很简单，也符合我们平时的接口调用习惯。但是这是默认的轮询负载均衡算法。在上一节我们知道，Ribbon 中支持很多自带的均衡算法，我们只要在代码中根据具体情况，选择合适的均衡算法即可。甚至我们可以选择自己自定义的均衡算法。</p> <p>那么使用 Feign 的时候，如何去切换到 Ribbon 中其他均衡策略呢？甚至切换到自定义的策略呢？</p> <p>也很简单，我们可以在 application.yml 配置文件中来指定，如下：</p> <pre><code class="prism language-yml"><span class="token comment"># feign和ribbon结合，指定策略。feign默认的是轮询的策略，这里的配置可以自定义</span><span class="token key atrule">MICROSERVICE-ORDER</span><span class="token punctuation">:</span><span class="token key atrule">ribbon</span><span class="token punctuation">:</span><span class="token key atrule">NFLoadBalancerRuleClassName</span><span class="token punctuation">:</span> com.netflix.loadbalancer.RandomRule</code></pre> <p>MICROSERVICE-ORDER 表示作用到哪个微服务，<code>com.netflix.loadbalancer.RandomRule</code> 即前面介绍 Ribbon 时里面的随机策略，当然，我们也可以指定为其他策略，包括我们自己定义的，只要把相应的包路径写到这即可，很方便。</p> <p>重新启动一下服务消费方的程序，访问上面那个测试 url，可以看到三个订单服务是随机调用的，说明配置生效。</p> <p></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-82182.htm">狗粮招聘业务（狗粮厂招聘业务员）</a></p>
+                                        <p>下一个：<a href="/news/article-82893.htm">叫猫过来的手势视频（叫猫过来怎么说）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-23-free-subscribe-node.htm" title="免费VPN列表推荐 | 3月23日19.3M/S|免费V2ray/SSR/Shadowrocket/Clash免费节点订阅分享">免费VPN列表推荐 | 3月23日19.3M/S|免费V2ray/SSR/Shadowrocket/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-6-free-v2ray-subscribe.htm" title="免费VPN列表推荐 | 3月6日21M/S|免费SSR/Shadowrocket/V2ray/Clash免费节点订阅分享">免费VPN列表推荐 | 3月6日21M/S|免费SSR/Shadowrocket/V2ray/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-78730.htm" title="本人长期上门回收宠物猫（本人长期上门回收宠物猫 诈骗）">本人长期上门回收宠物猫（本人长期上门回收宠物猫 诈骗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-15-free-node-subscribe.htm" title="免费VPN列表推荐 | 3月15日22.6M/S|免费V2ray/Clash/Shadowrocket/SSR免费节点订阅分享">免费VPN列表推荐 | 3月15日22.6M/S|免费V2ray/Clash/Shadowrocket/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-78729.htm" title="附近美甲美睫培训学校哪家好一点（美甲美睫美容学校）">附近美甲美睫培训学校哪家好一点（美甲美睫美容学校）</a></li>
+                        <li class="py-2"><a href="/news/article-65567.htm" title="GIT 中如何打标签（git tag）">GIT 中如何打标签（git tag）</a></li>
+                        <li class="py-2"><a href="/news/article-69369.htm" title="南京免费领养猫咪的地方在哪里啊（南京免费领养宠物的地方在哪里）">南京免费领养猫咪的地方在哪里啊（南京免费领养宠物的地方在哪里）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-22-free-node-subscribe-links.htm" title="免费VPN列表推荐 | 3月22日20.4M/S|免费Clash/Shadowrocket/SSR/V2ray免费节点订阅分享">免费VPN列表推荐 | 3月22日20.4M/S|免费Clash/Shadowrocket/SSR/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-70017.htm" title="ES 文档与索引介绍">ES 文档与索引介绍</a></li>
+                        <li class="py-2"><a href="/news/article-78046.htm" title="MyBatis &#8211; typeAliases不能正确解析问题的处理方法">MyBatis &#8211; typeAliases不能正确解析问题的处理方法</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">82</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+    <section id="footer-Content">
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="site-info text-center">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">免费VPN列表推荐 订阅机场节点官网</a> 版权所有
+                            <br />
+                            Powered by WordPress
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>
+<a href="#" class="back-to-top">
+    <i class="lni lni-chevron-up"></i>
+</a>
+<div id="preloader">
+    <div class="loader" id="loader-1"></div>
+</div>
+<script src="/assets/website/js/frontend/clashvergerev/vendor/modernizr-3.7.1.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/vendor/jquery-3.5.1-min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/popper.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/bootstrap-4.5.0.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/owl.carousel.2.3.4.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/nivo-lightbox.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/jquery.magnific-popup.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/form-validator.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/contact-form-script.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/main.js"></script>
+<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+<script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
