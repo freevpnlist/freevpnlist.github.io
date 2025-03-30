@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freevpnlist.github.io/news/article-84333.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>JS实现数码时钟</title>
+        <meta name="description" content="JS时钟来啦~ - 几行代码实现在页面上显示时间，制作一个简介漂亮的页面时钟。首先div里加载图片，默认显示数字0，  &lt;div id="d1"&gt;         &lt;img src=" />
+        <link rel="icon" href="/assets/website/img/clashvergerev/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="免费VPN列表推荐 订阅机场节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freevpnlist.github.io/news/article-84333.htm" />
+    <meta property="og:site_name" content="免费VPN列表推荐 订阅机场节点官网" />
+    <meta property="og:title" content="JS实现数码时钟" />
+    <meta property="og:image" content="https://freevpnlist.github.io/uploads/20240722-1/c3081aeb72ccddcbbf96271511274f19.webp" />
+        <meta property="og:release_date" content="2025-03-30T09:31:07" />
+    <meta property="og:updated_time" content="2025-03-30T09:31:07" />
+        <meta property="og:description" content="JS时钟来啦~ - 几行代码实现在页面上显示时间，制作一个简介漂亮的页面时钟。首先div里加载图片，默认显示数字0，  &lt;div id="d1"&gt;         &lt;img src=" />
+        
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/bootstrap-4.5.0.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/animate.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/LineIcons.2.0.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/owl.carousel.2.3.4.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/owl.theme.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/nivo-lightbox.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/main.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/responsive.css">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="JS实现数码时钟">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KVMHR9VKMC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KVMHR9VKMC');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <header class="blog-hero-area">
+                <div class="overlay">
+            <span></span>
+            <span></span>
+        </div>
+        <div class="navbar-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/">
+                                                            <span>免费VPN列表推荐</span>
+                                                        </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ml-auto">
+                                                                        <li class="nav-item">
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                    </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="home">
+            <div class="container">
+                <div class="row justify-content-lg-center">
+                    <div class="col-lg-10">
+                        <div class="contents text-center">
+                            <h1>JS实现数码时钟</h1>
+                            <div class="post-meta">
+                                <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="business-plan">
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <ul> <li>JS时钟来啦~<img decoding="async" src="http://img.555519.xyz/uploads/20230217/e4b2f968f23247d22fbea438f6732c77.jpg" alt="JS实现数码时钟"> - 几行代码实现在页面上显示时间，制作一个简介漂亮的页面时钟。首先div里加载图片，默认显示数字0，</li> </ul> <pre><code class="prism language-bash"><span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"d1"</span><span class="token operator">&gt;</span>         <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"./imgs/img/0.jpg"</span> alt<span class="token operator">=</span><span class="token string">""</span><span class="token operator">&gt;</span>         <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"./imgs/img/0.jpg"</span> alt<span class="token operator">=</span><span class="token string">""</span><span class="token operator">&gt;</span>         <span class="token operator">&lt;</span>h1<span class="token operator">&gt;</span>时<span class="token operator">&lt;</span>/h1<span class="token operator">&gt;</span>         <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"./imgs/img/0.jpg"</span> alt<span class="token operator">=</span><span class="token string">""</span><span class="token operator">&gt;</span>         <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"./imgs/img/0.jpg"</span> alt<span class="token operator">=</span><span class="token string">""</span><span class="token operator">&gt;</span>         <span class="token operator">&lt;</span>h1<span class="token operator">&gt;</span>分<span class="token operator">&lt;</span>/h1<span class="token operator">&gt;</span>         <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"./imgs/img/0.jpg"</span> alt<span class="token operator">=</span><span class="token string">""</span><span class="token operator">&gt;</span>         <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"./imgs/img/0.jpg"</span> alt<span class="token operator">=</span><span class="token string">""</span><span class="token operator">&gt;</span>         <span class="token operator">&lt;</span>h1<span class="token operator">&gt;</span>秒<span class="token operator">&lt;</span>/h1<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>/div<span class="token operator">&gt;</span> </code></pre> <ul> <li>在JS中设置定时器，获取时间，并对时间进行个位、十位判断，可以用一个数组来存储这些数值，通过document对象获取所有img，再使用for循环更改img中src，就大功告成！</li> </ul> <pre><code class="prism language-bash">var Images <span class="token operator">=</span> document.getElementsByTagName<span class="token punctuation">(</span><span class="token string">"img"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> setInterval<span class="token punctuation">(</span>function<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> //获取时间       var d <span class="token operator">=</span> new Date<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       var hours <span class="token operator">=</span> d.getHours<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       var min <span class="token operator">=</span> d.getMinutes<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       var sec <span class="token operator">=</span> d.getSeconds<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       var _date <span class="token operator">=</span> <span class="token punctuation">[</span>hours <span class="token operator">&lt;</span> 10 ? 0 <span class="token keyword">:</span> Math.floor<span class="token punctuation">(</span>hours / 10<span class="token punctuation">)</span>, hours % 10, min <span class="token operator">&lt;</span> 10 ? 0 <span class="token keyword">:</span> Math.floor<span class="token punctuation">(</span>min /                     10<span class="token punctuation">)</span>, min % 10, sec <span class="token operator">&lt;</span> 10 ? 0 <span class="token keyword">:</span> Math.floor<span class="token punctuation">(</span>sec / 10<span class="token punctuation">)</span>, sec % 10<span class="token punctuation">]</span><span class="token punctuation">;</span>       <span class="token keyword">for</span> <span class="token punctuation">(</span>var i <span class="token operator">=</span> 0<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> Images.length<span class="token punctuation">;</span> i++<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>           Images<span class="token punctuation">[</span>i<span class="token punctuation">]</span>.src <span class="token operator">=</span> <span class="token string">"./imgs/img/"</span> + _date<span class="token punctuation">[</span>i<span class="token punctuation">]</span> + <span class="token string">".jpg"</span><span class="token punctuation">;</span>       <span class="token punctuation">}</span>   <span class="token punctuation">}</span>,   1000<span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-83611.htm">动物医院投资多少钱啊（动物医院投资多少钱啊现在）</a></p>
+                                        <p>下一个：<a href="/news/article-84334.htm">双向带头循环链表（详解）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-76001.htm" title="动物打疫苗是干啥的呀视频（动物打疫苗是干啥的呀视频播放）">动物打疫苗是干啥的呀视频（动物打疫苗是干啥的呀视频播放）</a></li>
+                        <li class="py-2"><a href="/news/article-64941.htm" title="宠物领养条约最新版（宠物领养协议具有法律效应吗）">宠物领养条约最新版（宠物领养协议具有法律效应吗）</a></li>
+                        <li class="py-2"><a href="/news/article-78730.htm" title="本人长期上门回收宠物猫（本人长期上门回收宠物猫 诈骗）">本人长期上门回收宠物猫（本人长期上门回收宠物猫 诈骗）</a></li>
+                        <li class="py-2"><a href="/news/article-82892.htm" title="Spring Cloud中使用Feign实现负载均衡详解">Spring Cloud中使用Feign实现负载均衡详解</a></li>
+                        <li class="py-2"><a href="/news/article-64291.htm" title="Redis+Caffeine两级缓存，让访问速度纵享丝滑">Redis+Caffeine两级缓存，让访问速度纵享丝滑</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-22-free-node-subscribe-links.htm" title="免费VPN列表推荐 | 3月22日20.4M/S|免费Clash/Shadowrocket/SSR/V2ray免费节点订阅分享">免费VPN列表推荐 | 3月22日20.4M/S|免费Clash/Shadowrocket/SSR/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-64337.htm" title="动物疫苗周期多久一次最好（动物疫苗一般什么时候是旺季）">动物疫苗周期多久一次最好（动物疫苗一般什么时候是旺季）</a></li>
+                        <li class="py-2"><a href="/news/article-79422.htm" title="PHP别名/导入名称空间方法详解">PHP别名/导入名称空间方法详解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-4-node-share.htm" title="免费VPN列表推荐 | 3月4日18.8M/S|免费V2ray/SSR/Clash/Shadowrocket免费节点订阅分享">免费VPN列表推荐 | 3月4日18.8M/S|免费V2ray/SSR/Clash/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-68710.htm" title="动物疫苗市场的现状和趋势（2021动物疫苗行业前景）">动物疫苗市场的现状和趋势（2021动物疫苗行业前景）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">88</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+    <section id="footer-Content">
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="site-info text-center">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">免费VPN列表推荐 订阅机场节点官网</a> 版权所有
+                            <br />
+                            Powered by WordPress
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>
+<a href="#" class="back-to-top">
+    <i class="lni lni-chevron-up"></i>
+</a>
+<div id="preloader">
+    <div class="loader" id="loader-1"></div>
+</div>
+<script src="/assets/website/js/frontend/clashvergerev/vendor/modernizr-3.7.1.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/vendor/jquery-3.5.1-min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/popper.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/bootstrap-4.5.0.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/owl.carousel.2.3.4.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/nivo-lightbox.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/jquery.magnific-popup.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/form-validator.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/contact-form-script.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/main.js"></script>
+<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+<script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
