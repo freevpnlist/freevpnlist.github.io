@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freevpnlist.github.io/news/article-87928.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Docker修改容器默认存储路径</title>
+        <meta name="description" content="docker安装之后默认的服务数据存放根路径为/var/lib/docker目录下，var目录默认使用的是根分区的磁盘空间；所以这是非常危险的事情；随着我们镜像、启动的容器实例开始增多的时候，磁盘所消" />
+        <link rel="icon" href="/assets/website/img/clashvergerev/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="免费VPN列表推荐 订阅机场节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freevpnlist.github.io/news/article-87928.htm" />
+    <meta property="og:site_name" content="免费VPN列表推荐 订阅机场节点官网" />
+    <meta property="og:title" content="Docker修改容器默认存储路径" />
+    <meta property="og:image" content="https://freevpnlist.github.io/uploads/20240722-1/5f4bab89adb35e3a6e8b6952e49a6454.webp" />
+        <meta property="og:release_date" content="2025-04-04T09:04:31" />
+    <meta property="og:updated_time" content="2025-04-04T09:04:31" />
+        <meta property="og:description" content="docker安装之后默认的服务数据存放根路径为/var/lib/docker目录下，var目录默认使用的是根分区的磁盘空间；所以这是非常危险的事情；随着我们镜像、启动的容器实例开始增多的时候，磁盘所消" />
+        
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/bootstrap-4.5.0.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/animate.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/LineIcons.2.0.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/owl.carousel.2.3.4.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/owl.theme.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/nivo-lightbox.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/main.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/responsive.css">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Docker修改容器默认存储路径">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KVMHR9VKMC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KVMHR9VKMC');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <header class="blog-hero-area">
+                <div class="overlay">
+            <span></span>
+            <span></span>
+        </div>
+        <div class="navbar-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/">
+                                                            <span>免费VPN列表推荐</span>
+                                                        </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ml-auto">
+                                                                        <li class="nav-item">
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                    </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="home">
+            <div class="container">
+                <div class="row justify-content-lg-center">
+                    <div class="col-lg-10">
+                        <div class="contents text-center">
+                            <h1>Docker修改容器默认存储路径</h1>
+                            <div class="post-meta">
+                                <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="business-plan">
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p><strong>docker安装之后默认的服务数据存放根路径为/var/lib/docker目录下，var目录默认使用的是根分区的磁盘空间；所以这是非常危险的事情；随着我们镜像、启动的容器实例开始增多的时候，磁盘所消耗的空间也会越来越大，所以我们必须要做数据迁移和修改docker服务的默认存储位置路径；有多种方式是可以修改docker默认存储目录路径的，但是最好是在docker安装完成后，第一时间便修改docker的默认存储位置路径为其他磁盘空间较大的目录(一般企业中为/data目录)，规避迁移数据过程中所造成的风险。</strong></p> <pre><strong>1）创建docker容器存放的路径</strong></pre> <pre><code> # mkdir -p /home/data/docker/lib</code></pre> <pre><strong>（2）停止Docker服务并迁移数据到新目录</strong></pre> <pre><code> # systemctl stop docker.service  # rsync -avz /var/lib/docker/ /home/data/docker/lib/</code></pre> <pre><strong>（3</strong><strong>）创建Docker配置文件</strong></pre> <pre><code># mkdir -p /etc/systemd/system/docker.service.d/  # vim /etc/systemd/system/docker.service.d/devicemapper.conf [Service] ExecStart= ExecStart=/usr/bin/dockerd  --graph=/home/data/docker/lib/</code></pre> <pre><strong>（4</strong><strong>）重启Docker服务</strong></pre> <pre><code># systemctl daemon-reload  # systemctl restart docker</code></pre> <pre><strong>（5</strong><strong>）查看现在容器存放的目录</strong></pre> <pre><code># docker info | grep "Dir"</code></pre> <pre> Docker Root Dir: /home/data/docker/lib</pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-87192.htm">全红婵和陈若琳分数（红姐）满满干货，</a></p>
+                                        <p>下一个：<a href="/news/article-87929.htm">猫咪用什么驱虫药比较好（猫咪用什么驱虫药效果最好）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-75327.htm" title="中国品牌猫粮（国内猫粮排名）">中国品牌猫粮（国内猫粮排名）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-15-free-node-subscribe.htm" title="免费VPN列表推荐 | 3月15日22.6M/S|免费V2ray/Clash/Shadowrocket/SSR免费节点订阅分享">免费VPN列表推荐 | 3月15日22.6M/S|免费V2ray/Clash/Shadowrocket/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-67440.htm" title="深圳宠物领养网站有哪些（深圳市领养宠物中心）">深圳宠物领养网站有哪些（深圳市领养宠物中心）</a></li>
+                        <li class="py-2"><a href="/news/article-85050.htm" title="我所在的城市有一家宠物医院的英语怎么写 我所在的城市有一家宠物医院的英语怎么写">我所在的城市有一家宠物医院的英语怎么写 我所在的城市有一家宠物医院的英语怎么写</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-8-free-v2ray.htm" title="免费VPN列表推荐 | 3月8日21.2M/S|免费SSR/Shadowrocket/V2ray/Clash免费节点订阅分享">免费VPN列表推荐 | 3月8日21.2M/S|免费SSR/Shadowrocket/V2ray/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-66813.htm" title="Python用re模块实现简易tokenizer_在线工具">Python用re模块实现简易tokenizer_在线工具</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-22-free-node-subscribe-links.htm" title="免费VPN列表推荐 | 3月22日20.4M/S|免费Clash/Shadowrocket/SSR/V2ray免费节点订阅分享">免费VPN列表推荐 | 3月22日20.4M/S|免费Clash/Shadowrocket/SSR/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-67439.htm" title="ASP.NET Core使用EF创建模型(索引、备用键、继承、支持字段)_实用技巧">ASP.NET Core使用EF创建模型(索引、备用键、继承、支持字段)_实用技巧</a></li>
+                        <li class="py-2"><a href="/news/article-87928.htm" title="Docker修改容器默认存储路径">Docker修改容器默认存储路径</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-3-clash-v2ray-ss-ssr.htm" title="免费VPN列表推荐 | 3月3日18.6M/S|免费SSR/Clash/V2ray/Shadowrocket免费节点订阅分享">免费VPN列表推荐 | 3月3日18.6M/S|免费SSR/Clash/V2ray/Shadowrocket免费节点订阅分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">13</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">88</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+    <section id="footer-Content">
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="site-info text-center">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">免费VPN列表推荐 订阅机场节点官网</a> 版权所有
+                            <br />
+                            Powered by WordPress
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>
+<a href="#" class="back-to-top">
+    <i class="lni lni-chevron-up"></i>
+</a>
+<div id="preloader">
+    <div class="loader" id="loader-1"></div>
+</div>
+<script src="/assets/website/js/frontend/clashvergerev/vendor/modernizr-3.7.1.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/vendor/jquery-3.5.1-min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/popper.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/bootstrap-4.5.0.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/owl.carousel.2.3.4.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/nivo-lightbox.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/jquery.magnific-popup.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/form-validator.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/contact-form-script.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/main.js"></script>
+<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+<script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
