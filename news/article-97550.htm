@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freevpnlist.github.io/news/article-97550.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>vuex数据共享与多模块化</title>
+        <meta name="description" content="数据共享 数据共享：相同数据在多组件中使用 vuex模块化 模块化+命名空间 目的： 让代码更好维护，让多种数据分类更加明确 修改store/index.js // 该文件是准备vuex的核心 ==&" />
+        <link rel="icon" href="/assets/website/img/clashvergerev/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="免费VPN列表推荐 订阅机场节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freevpnlist.github.io/news/article-97550.htm" />
+    <meta property="og:site_name" content="免费VPN列表推荐 订阅机场节点官网" />
+    <meta property="og:title" content="vuex数据共享与多模块化" />
+    <meta property="og:image" content="https://freevpnlist.github.io/uploads/20240722-1/fcd0dc6131c7af0baaa79780a633ab80.webp" />
+        <meta property="og:release_date" content="2025-04-17T08:59:31" />
+    <meta property="og:updated_time" content="2025-04-17T08:59:31" />
+        <meta property="og:description" content="数据共享 数据共享：相同数据在多组件中使用 vuex模块化 模块化+命名空间 目的： 让代码更好维护，让多种数据分类更加明确 修改store/index.js // 该文件是准备vuex的核心 ==&" />
+        
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/bootstrap-4.5.0.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/animate.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/LineIcons.2.0.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/owl.carousel.2.3.4.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/owl.theme.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/nivo-lightbox.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/main.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/responsive.css">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vuex数据共享与多模块化">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KVMHR9VKMC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KVMHR9VKMC');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <header class="blog-hero-area">
+                <div class="overlay">
+            <span></span>
+            <span></span>
+        </div>
+        <div class="navbar-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/">
+                                                            <span>免费VPN列表推荐</span>
+                                                        </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ml-auto">
+                                                                        <li class="nav-item">
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                    </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="home">
+            <div class="container">
+                <div class="row justify-content-lg-center">
+                    <div class="col-lg-10">
+                        <div class="contents text-center">
+                            <h1>vuex数据共享与多模块化</h1>
+                            <div class="post-meta">
+                                <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="business-plan">
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h4><a id="_0" rel="nofollow"></a>数据共享</h4> <p>数据共享：相同数据在多组件中使用<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220609/5e3a90d5f5183b94567ad47345a7ce25.jpg" alt="vuex数据共享与多模块化"></p> <h4><a id="vuex_3" rel="nofollow"></a>vuex模块化</h4> <h5><a id="_4" rel="nofollow"></a>模块化+命名空间</h5> <p><strong>目的：</strong> 让代码更好维护，让多种数据分类更加明确</p> <p>修改<code>store/index.js</code></p> <pre><code class="prism language-javascript"><span class="token comment">// 该文件是准备vuex的核心 ==&gt; store</span><span class="token comment">// 引入Vue核心库</span><span class="token keyword">import</span> Vue<span class="token keyword">from</span><span class="token string">"vue"</span><span class="token comment">// 引入Vuex</span><span class="token keyword">import</span> Vuex<span class="token keyword">from</span><span class="token string">'vuex'</span><span class="token comment">// 使用Vuex插件</span> Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>Vuex<span class="token punctuation">)</span><span class="token comment">//count模块</span><span class="token keyword">const</span> countOptions<span class="token operator">=</span><span class="token punctuation">{<!-- --></span> 	namespaced<span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token comment">// 开启命名空间</span> 	actions<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 	mutations<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 	state<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">,</span> 	getters<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token comment">//person模块</span><span class="token keyword">const</span> personOptions<span class="token operator">=</span><span class="token punctuation">{<!-- --></span> 	namespaced<span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token comment">// 开启命名空间</span> 	actions<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 	mutations<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 	state<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">,</span> 	getters<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token comment">// 创建并暴露store</span><span class="token keyword">export</span><span class="token keyword">default</span><span class="token keyword">new</span><span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span> 	modules<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token comment">// 声明模块</span> 		countAbout<span class="token operator">:</span>countOptions<span class="token punctuation">,</span> 		personAbout<span class="token operator">:</span>personOptions<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre> <p>1）开启命名空间后，组件中读取<code>state</code>数据</p> <pre><code class="prism language-javascript"><span class="token comment">//方式一： 自己直接读取</span><span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>state<span class="token punctuation">.</span>personAbout<span class="token punctuation">.</span>personList<span class="token comment">//方式二：借助mapState读取</span><span class="token operator">...</span><span class="token function">mapState</span><span class="token punctuation">(</span><span class="token string">'countAbout'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'sum'</span><span class="token punctuation">,</span><span class="token string">'school'</span><span class="token punctuation">,</span><span class="token string">'subject'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre> <p>2）开启命名空间后，组件中读取<code>getters</code>数据</p> <pre><code class="prism language-javascript"><span class="token comment">//方式一： 自己直接读取</span><span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>getters<span class="token punctuation">[</span><span class="token string">'personAbout/firstPersonName'</span><span class="token punctuation">]</span><span class="token comment">//方式二：借助mapGetters读取</span><span class="token operator">...</span><span class="token function">mapGetters</span><span class="token punctuation">(</span><span class="token string">'countAbout'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'bigSum'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre> <p>3）开启命名空间后，组件中调用<code>dispatch</code></p> <pre><code class="prism language-javascript"><span class="token comment">//方式一： 自己直接dispatch</span><span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token string">'personAbout/addPersonWang'</span><span class="token punctuation">,</span>person<span class="token punctuation">)</span><span class="token comment">//方式二：借助mapActions</span><span class="token operator">...</span><span class="token function">mapActions</span><span class="token punctuation">(</span><span class="token string">'countAbout'</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span>incrementOdd<span class="token operator">:</span><span class="token string">'plusOdd'</span><span class="token punctuation">,</span>incrementWait<span class="token operator">:</span><span class="token string">'plusWait'</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre> <p>4）开启命名空间后，组件中调用<code>commit</code></p> <pre><code class="prism language-javascript"><span class="token comment">//方式一： 自己直接commit</span><span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">'personAbout/ADD_PERSON'</span><span class="token punctuation">,</span>person<span class="token punctuation">)</span><span class="token comment">//方式二：借助mapMutations</span><span class="token operator">...</span><span class="token function">mapActions</span><span class="token punctuation">(</span><span class="token string">'countAbout'</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span>increment<span class="token operator">:</span><span class="token string">'PLUS'</span><span class="token punctuation">,</span>decrement<span class="token operator">:</span><span class="token string">'MINUS'</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-96857.htm">猫咪体外驱虫怎么操作 猫咪体外驱虫怎么操作视频</a></p>
+                                        <p>下一个：<a href="/news/article-97551.htm">动物检疫条件合格证明（动物检疫条件合格证明啥样的?）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-68069.htm" title="关于springboot启动时报错 [org/springframework/boot/autoconfigure/web/ServerPropertiesAutoConfiguration.clas">关于springboot启动时报错 [org/springframework/boot/autoconfigure/web/ServerPropertiesAutoConfiguration.clas</a></li>
+                        <li class="py-2"><a href="/news/article-65568.htm" title="哈尔滨农大宠物医院电话号码（哈尔滨农大兽医院）">哈尔滨农大宠物医院电话号码（哈尔滨农大兽医院）</a></li>
+                        <li class="py-2"><a href="/news/article-92358.htm" title="宠物店宠物寄养协议（宠物店寄养协议有法律效力吗）">宠物店宠物寄养协议（宠物店寄养协议有法律效力吗）</a></li>
+                        <li class="py-2"><a href="/news/article-95357.htm" title="国产最好的狗粮品牌排行榜（国产狗粮排名前十品牌）">国产最好的狗粮品牌排行榜（国产狗粮排名前十品牌）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-21-clash-v2ray-ss-ssr.htm" title="免费VPN列表推荐 | 3月21日19.2M/S|免费V2ray/Clash/Shadowrocket/SSR免费节点订阅分享">免费VPN列表推荐 | 3月21日19.2M/S|免费V2ray/Clash/Shadowrocket/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-12-free-node-subscribe-links.htm" title="免费VPN列表推荐 | 3月12日20.8M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享">免费VPN列表推荐 | 3月12日20.8M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-85050.htm" title="我所在的城市有一家宠物医院的英语怎么写 我所在的城市有一家宠物医院的英语怎么写">我所在的城市有一家宠物医院的英语怎么写 我所在的城市有一家宠物医院的英语怎么写</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-15-free-node-subscribe.htm" title="免费VPN列表推荐 | 3月15日22.6M/S|免费V2ray/Clash/Shadowrocket/SSR免费节点订阅分享">免费VPN列表推荐 | 3月15日22.6M/S|免费V2ray/Clash/Shadowrocket/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-14-free-node-subscribe-links.htm" title="免费VPN列表推荐 | 4月14日22.2M/S|免费SSR/V2ray/Shadowrocket/Clash免费节点订阅分享">免费VPN列表推荐 | 4月14日22.2M/S|免费SSR/V2ray/Shadowrocket/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-97550.htm" title="vuex数据共享与多模块化">vuex数据共享与多模块化</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">51</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">88</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+    <section id="footer-Content">
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="site-info text-center">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">免费VPN列表推荐 订阅机场节点官网</a> 版权所有
+                            <br />
+                            Powered by WordPress
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>
+<a href="#" class="back-to-top">
+    <i class="lni lni-chevron-up"></i>
+</a>
+<div id="preloader">
+    <div class="loader" id="loader-1"></div>
+</div>
+<script src="/assets/website/js/frontend/clashvergerev/vendor/modernizr-3.7.1.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/vendor/jquery-3.5.1-min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/popper.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/bootstrap-4.5.0.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/owl.carousel.2.3.4.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/nivo-lightbox.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/jquery.magnific-popup.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/form-validator.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/contact-form-script.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/main.js"></script>
+<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+<script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
