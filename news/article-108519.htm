@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freevpnlist.github.io/news/article-108519.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>HTTPclient保持长连接</title>
+        <meta name="description" content="首先解释一下什么是长连接，当我们向一台服务器发起请求时，我们需要和对方建立一条通道，去传输数据，所谓的短连接，就是说我们建立起了通道，然后在传输完数据，就把通道摧毁，下次需要的时候再重新去建立通道。长" />
+        <link rel="icon" href="/assets/website/img/clashvergerev/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="免费VPN列表推荐 订阅机场节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freevpnlist.github.io/news/article-108519.htm" />
+    <meta property="og:site_name" content="免费VPN列表推荐 订阅机场节点官网" />
+    <meta property="og:title" content="HTTPclient保持长连接" />
+    <meta property="og:image" content="https://freevpnlist.github.io/uploads/20240722-1/1301bde476b82048ee7b141f4165b8ba.webp" />
+        <meta property="og:release_date" content="2025-05-01T09:02:07" />
+    <meta property="og:updated_time" content="2025-05-01T09:02:07" />
+        <meta property="og:description" content="首先解释一下什么是长连接，当我们向一台服务器发起请求时，我们需要和对方建立一条通道，去传输数据，所谓的短连接，就是说我们建立起了通道，然后在传输完数据，就把通道摧毁，下次需要的时候再重新去建立通道。长" />
+        
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/bootstrap-4.5.0.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/animate.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/LineIcons.2.0.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/owl.carousel.2.3.4.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/owl.theme.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/nivo-lightbox.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/main.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/responsive.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="HTTPclient保持长连接">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KVMHR9VKMC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KVMHR9VKMC');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <header class="blog-hero-area">
+                <div class="overlay">
+            <span></span>
+            <span></span>
+        </div>
+        <div class="navbar-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/">
+                                                            <span>免费VPN列表推荐</span>
+                                                        </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ml-auto">
+                                                                        <li class="nav-item">
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                    </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="home">
+            <div class="container">
+                <div class="row justify-content-lg-center">
+                    <div class="col-lg-10">
+                        <div class="contents text-center">
+                            <h1>HTTPclient保持长连接</h1>
+                            <div class="post-meta">
+                                <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="business-plan">
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>首先解释一下什么是长连接，当我们向一台服务器发起请求时，我们需要和对方建立一条通道，去传输数据，所谓的短连接，就是说我们建立起了通道，然后在传输完数据，就把通道摧毁，下次需要的时候再重新去建立通道。长连接呢，就是指，我们建立了一条通道，传递完数据后，先不摧毁，下次如果还需要传输数据，就复用这条通道。因为通道的建立是需要花费时间的，所以长连接的优势就在于响应速度快，但是服务器压力大，因为同时有很多人在向服务器建立通道，即便有些通道已经传输完数据了，由于长连接的原因，通道也不会被摧毁；短连接呢，则是，响应速度慢，服务器压力小。由于现在更多的是强调用户的体验，所以长连接目前是最常见的。</p> <p>如何在java中实现一个长连接呢，其实很简单，只需要在请求的请求头中加入特定的参数 ：“Connection”："keep-alive"即可。这样如果对方支持长连接的话，那么这个连接就会保持长连接了。</p> <p>问题的关键就来了，在一次压测某个https请求响应速度的代码中，我发现了，当对方响应数据为null,也就是responseBody中带的数据为null时，响应速度特别快，大概在5ms左右，但是一旦对方返回了响应数据，本次响应就可能达到了20ms。然后请运维同事抓包，发现每次连接，都会耗费时间在用户认证上，其实也就是从某个方面反应出，每次都是新建立了一个连接。</p> <pre><code class="prism language-java">HttpPost httpPost <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpPost</span><span class="token punctuation">(</span><span class="token string">"xxxxx"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> httpPost<span class="token punctuation">.</span><span class="token function">addHeader</span><span class="token punctuation">(</span><span class="token string">"Connection"</span><span class="token punctuation">,</span> <span class="token string">"keep-alive"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  CloseableHttpClient httpClient <span class="token operator">=</span> null<span class="token punctuation">;</span> <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span><span class="token number">0</span> <span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">5000</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>     <span class="token keyword">long</span> t1 <span class="token operator">=</span> System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 	CloseableHttpResponse response <span class="token operator">=</span> httpClient<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>httpPost<span class="token punctuation">)</span><span class="token punctuation">;</span> 	<span class="token keyword">long</span> t2 <span class="token operator">=</span> System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> <p>上了一段简单的代码，表示一下大概的逻辑，实际的压测代码还包括了线程池，连接池的完整参数等等，如果需要的可以留言或者翻看本人的其他的博客，有写线程池和连接池。</p> <p>就是这样一段代码，导致每次连接都是新建立的连接，那么原因是什么呢，我们先上代码：</p> <pre><code class="prism language-java"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">5000</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>      <span class="token keyword">long</span> t1 <span class="token operator">=</span> System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       CloseableHttpResponse response <span class="token operator">=</span> httpClient<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>httpPost<span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token keyword">if</span><span class="token punctuation">(</span>null <span class="token operator">!=</span> response<span class="token punctuation">.</span><span class="token function">getEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>            EntityUtils<span class="token punctuation">.</span><span class="token function">consume</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span><span class="token function">getEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token punctuation">}</span>       <span class="token keyword">long</span> t2 <span class="token operator">=</span> System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span> </code></pre> <p>我们只需要简单加上三行代码，就可以解决这个问题了，这是为什么呢，让我们点进去源码看一下<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230109/135a4daa52eda6e0f398e5416acabff5.jpg" alt="HTTPclient保持长连接"><br /> 这么一看， 其实这个方法也并没有做什么，只是简单的取到了流去关闭，为什么就保持长连接了呢。</p> <p>后来仔细读http连接的原理才得知，当一个连接建立，响应数据时，会封装CloseableHttpResponse这个对象里面，其中的Entity对象就是包含着响应体的数据，我们需要用流去获取。如果你不去获取，那么这个数据就会存在于这个对象中，连接池就会认为，这个通道里有未处理的数据，然后它不会去复用这个通道，而是选择重建一个通道。这就完美解释了为什么压测时，对方返回null时，响应速度特别快，而携带返回数据时，响应速度特别慢了。</p> <p>那么再仔细想想，为什么我们平常不知道这个知识点，却从来没有报过错呢，那是因为正常情况下，我们都是需要会对response做处理，比如String responseContent = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8); 类似这种，我们点进源码看，其实也是取到了流，并做了关闭操作。平常还是要多阅读源码，想想源码。</p> </p></div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-107686.htm">宠物猫粮排行榜（宠物用品猫粮）</a></p>
+                                        <p>下一个：<a href="/news/article-108520.htm">河南省兽用疫苗中心电话查询（郑州兽用疫苗）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-88635.htm" title="动物疫苗行业会议记录范文（动物疫苗行业会议记录范文模板）">动物疫苗行业会议记录范文（动物疫苗行业会议记录范文模板）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-17-free-node-subscribe.htm" title="免费VPN列表推荐 | 4月17日20.5M/S|免费Clash/Shadowrocket/SSR/V2ray免费节点订阅分享">免费VPN列表推荐 | 4月17日20.5M/S|免费Clash/Shadowrocket/SSR/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-96856.htm" title="人被猫咬了要打针吗（人被猫咬了要打针吗?疫苗多少钱一针）">人被猫咬了要打针吗（人被猫咬了要打针吗?疫苗多少钱一针）</a></li>
+                        <li class="py-2"><a href="/news/article-106011.htm" title="Linux安装gssapi、kafka-python实现Kerberos认证连接Kafka等中间件集群服务（最新版）">Linux安装gssapi、kafka-python实现Kerberos认证连接Kafka等中间件集群服务（最新版）</a></li>
+                        <li class="py-2"><a href="/news/article-104370.htm" title="动物医院价目表牌子 动物医院价目表牌子图片大全">动物医院价目表牌子 动物医院价目表牌子图片大全</a></li>
+                        <li class="py-2"><a href="/news/article-108519.htm" title="HTTPclient保持长连接">HTTPclient保持长连接</a></li>
+                        <li class="py-2"><a href="/news/article-89377.htm" title="动物疫苗可以自己打吗多少钱啊一针啊（给动物打一次疫苗多少钱）">动物疫苗可以自己打吗多少钱啊一针啊（给动物打一次疫苗多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-97551.htm" title="动物检疫条件合格证明（动物检疫条件合格证明啥样的?）">动物检疫条件合格证明（动物检疫条件合格证明啥样的?）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-6-free-v2ray.htm" title="免费VPN列表推荐 | 4月6日21.9M/S|免费V2ray/Shadowrocket/SSR/Clash免费节点订阅分享">免费VPN列表推荐 | 4月6日21.9M/S|免费V2ray/Shadowrocket/SSR/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-104371.htm" title="动物接种疫苗后多久产生抗体了 动物接种疫苗后多久产生抗体了呢">动物接种疫苗后多久产生抗体了 动物接种疫苗后多久产生抗体了呢</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-05/" title="2025-05 归档">2025-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">82</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+    <section id="footer-Content">
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="site-info text-center">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">免费VPN列表推荐 订阅机场节点官网</a> 版权所有
+                            <br />
+                            Powered by WordPress
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>
+<a href="#" class="back-to-top">
+    <i class="lni lni-chevron-up"></i>
+</a>
+<div id="preloader">
+    <div class="loader" id="loader-1"></div>
+</div>
+<script src="/assets/website/js/frontend/clashvergerev/vendor/modernizr-3.7.1.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/vendor/jquery-3.5.1-min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/popper.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/bootstrap-4.5.0.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/owl.carousel.2.3.4.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/nivo-lightbox.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/jquery.magnific-popup.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/form-validator.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/contact-form-script.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/main.js"></script>
+<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+<script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
