@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freevpnlist.github.io/news/article-109358.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>mysql timestamp_MySQL中的时间字段的几种数据类型比较</title>
+        <meta name="description" content="1.序言  最近在项目开发时，对于MySQL数据库中的有关时间的字段该选用何种类型，引发了一些争论。所以做了一些简单的研究，看了一些blog，和官方文档。最后做出一个自己的总结。 2.类型比较 INT" />
+        <link rel="icon" href="/assets/website/img/clashvergerev/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="免费VPN列表推荐 订阅机场节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freevpnlist.github.io/news/article-109358.htm" />
+    <meta property="og:site_name" content="免费VPN列表推荐 订阅机场节点官网" />
+    <meta property="og:title" content="mysql timestamp_MySQL中的时间字段的几种数据类型比较" />
+    <meta property="og:image" content="https://freevpnlist.github.io/uploads/20240722-1/fa669720bc32eda2cf3d9ed1f98fd13f.webp" />
+        <meta property="og:release_date" content="2025-05-02T09:21:57" />
+    <meta property="og:updated_time" content="2025-05-02T09:21:57" />
+        <meta property="og:description" content="1.序言  最近在项目开发时，对于MySQL数据库中的有关时间的字段该选用何种类型，引发了一些争论。所以做了一些简单的研究，看了一些blog，和官方文档。最后做出一个自己的总结。 2.类型比较 INT" />
+        
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/bootstrap-4.5.0.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/animate.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/LineIcons.2.0.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/owl.carousel.2.3.4.min.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/owl.theme.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/nivo-lightbox.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/main.css">
+    <link rel="stylesheet" href="/assets/website/css/clashvergerev/responsive.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="mysql timestamp_MySQL中的时间字段的几种数据类型比较">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KVMHR9VKMC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KVMHR9VKMC');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <header class="blog-hero-area">
+                <div class="overlay">
+            <span></span>
+            <span></span>
+        </div>
+        <div class="navbar-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/">
+                                                            <span>免费VPN列表推荐</span>
+                                                        </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ml-auto">
+                                                                        <li class="nav-item">
+                                        <a href="/">首页</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/news/">新闻资讯</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a href="/client.htm">客户端</a>
+                                    </li>
+                                                                    </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="home">
+            <div class="container">
+                <div class="row justify-content-lg-center">
+                    <div class="col-lg-10">
+                        <div class="contents text-center">
+                            <h1>mysql timestamp_MySQL中的时间字段的几种数据类型比较</h1>
+                            <div class="post-meta">
+                                <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="business-plan">
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="htmledit_views"> <div> <div style="text-align:center;"><img decoding="async" src="http://img.555519.xyz/uploads3/20220601/0f53b1b2a8bf25e12c64ae28c986bede.jpg" alt="mysql timestamp_MySQL中的时间字段的几种数据类型比较"></div> <h2>1.序言</h2> <p> 最近在项目开发时，对于MySQL数据库中的有关时间的字段该选用何种类型，引发了一些争论。所以做了一些简单的研究，看了一些blog，和官方文档。最后做出一个自己的总结。</p> <h2>2.类型比较</h2> <h2>INT</h2> <p> INT类型一般用于存储Unix时间戳。使用一个简单的 INT 列保存 Unix 时间是最普通的方法。使用 INT，你可以确保你要保存的数字可以快速、可靠地插入到表中。</p> <ul> <li> 占用4个字节</li> <li> 建立索引之后，查询速度快</li> <li> 条件范围搜索可以使用使用between</li> <li> 不能使用MySQL提供的时间函数<br /> 如果只是存储 Unix 时间戳（并且在它的合法日期范围内），而且不打算在它上面使用任何基于日期的查询，我觉得使用 INT 是可以的。它执行简单数值比较查询时非常快，因为只是在处理简单的数字。</li> </ul> <p><b>结论：</b>适合需要进行大量时间范围查询的数据表</p> <h2>TIMESTAMP和DATETIME</h2> <p> Datetime 和 Timestamp 都保存日期和时间信息，同时，使用人类可读的日期形式，如 "2018-01-01"。</p> <blockquote><p>    TIMESTAMP: A four-byte integer representing seconds UTC since the epoch ('1970-01-01 00:00:00' UTC)</p></blockquote> <p> TIMESTAMP：一个四字节的整数，从1970-01-01 00:00:00开始算起。</p> <p> Timestamp 和 Datetime 的核心不同点主要在于 MySQL在内部如何表示这些信息：<b>两种都以二进制而非字符串形式存储</b>，但在表示日期/时间部分时 Timestamp （4 字节） 比 Datetime （5字节，从MySQL 5.6.4版本起，之前为8个字节） 少使用 1 字节。当保存毫秒部分时两种都使用额外的空间 （1到3 字节）。</p> <ul> <li>非分数部分的DATETIME编码（5.6.4版本之后）：</li> </ul> <div class="has"> <pre><code>1 bit  sign           （1= non-negative, 0= negative)    17 bits year*13+month  (year 0-9999, month 0-12)     5 bits day             (0-31)     5 bits hour            (0-23)     6 bits minute          (0-59)     6 bits second          (0-59) ----------------------------- 40 bits = 5 bytes</code></pre> </div> <p>Timestamp 节省的 1 字节是有代价的：你只能存储从 '1970-01-01 00:00:01.000000' 到 '2038-01-19 03:14:07.999999' 之间的时间。而 Datetime 允许你存储从 '1000-01-01 00:00:00.000000' 到 '9999-12-31 23:59:59.999999' 之间的任何时间。</p> <p>另一个重要的差别是MySQL使用<b>服务器的时区</b>转换Timestamp值到它的 UTC 等价值再保存。当获取值是它会再次进行时区转换，所以你得回了你“原始的”日期/时间值。Datetime 列不会被数据库改变。无论时区怎样配置，每次都会保存和获取到同样的值。</p> <p>在5.6版本之后，datetime开始可以使用current time作为默认值，所以不再有timestamp比datetime更适合作为需要随插入和更新来变更时间的类型的说法。</p> <p><b>结论：</b>Datetime 是大多数场景下的最佳选择，理由是</p> <blockquote><p>    无需任何转换即是人类可读的。<br /> 不会因为时区变换产生问题。<br /> 只比TIMESTAMP多用 1 字节<br /> 支持更大的日期范围（从 1000 年到 9999 年）</p></blockquote> <h2>3.总结</h2> <p> 没有完美的数据类型，只要最合适的数据类型。这么多类型同时存在一定是有其道理的，了解清楚了不同类型的差异，就能选择最合适的类型。</p> <p>参考：</p> <p>[1]: https://www.jb51.net/article/125715.htm 解析MySQL中存储时间日期类型的选择问题</p> <p>[2]: https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html Date and Time Data Type Representation</p> <p>[3]: https://www.jianshu.com/p/ec77b0631886 MySQL中你应该使用什么数据类型表示时间？</p> </div> </div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-108520.htm">河南省兽用疫苗中心电话查询（郑州兽用疫苗）</a></p>
+                                        <p>下一个：<a href="/news/article-109359.htm">人打的疫苗和动物打的疫苗一样吗视频播放 人打的疫苗和动物打的疫苗一样吗视频播放</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-107686.htm" title="宠物猫粮排行榜（宠物用品猫粮）">宠物猫粮排行榜（宠物用品猫粮）</a></li>
+                        <li class="py-2"><a href="/news/article-102743.htm" title="厦门宠物领养贴吧 厦门宠物领养贴吧论坛">厦门宠物领养贴吧 厦门宠物领养贴吧论坛</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-29-clash-v2ray-ss-ssr.htm" title="免费VPN列表推荐 | 4月29日20.6M/S|免费Shadowrocket/SSR/Clash/V2ray免费节点订阅分享">免费VPN列表推荐 | 4月29日20.6M/S|免费Shadowrocket/SSR/Clash/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-9-free-subscribe-node.htm" title="免费VPN列表推荐 | 4月9日18.2M/S|免费SSR/V2ray/Shadowrocket/Clash免费节点订阅分享">免费VPN列表推荐 | 4月9日18.2M/S|免费SSR/V2ray/Shadowrocket/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-86475.htm" title="兽药十大排名（兽药十大排名最新）">兽药十大排名（兽药十大排名最新）</a></li>
+                        <li class="py-2"><a href="/news/article-88636.htm" title="宠物领养协议书范本模板下载图片（宠物领养协议文案）">宠物领养协议书范本模板下载图片（宠物领养协议文案）</a></li>
+                        <li class="py-2"><a href="/news/article-109358.htm" title="mysql timestamp_MySQL中的时间字段的几种数据类型比较">mysql timestamp_MySQL中的时间字段的几种数据类型比较</a></li>
+                        <li class="py-2"><a href="/news/article-106012.htm" title="JAVA8 | 日期时间API（LocalDate、LocalDateTime、LocalTime）">JAVA8 | 日期时间API（LocalDate、LocalDateTime、LocalTime）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-3-free-node-subscribe.htm" title="免费VPN列表推荐 | 4月3日22.1M/S|免费Clash/V2ray/Shadowrocket/SSR免费节点订阅分享">免费VPN列表推荐 | 4月3日22.1M/S|免费Clash/V2ray/Shadowrocket/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-12-free-v2ray-subscribe.htm" title="免费VPN列表推荐 | 4月12日21.3M/S|免费V2ray/Shadowrocket/Clash/SSR免费节点订阅分享">免费VPN列表推荐 | 4月12日21.3M/S|免费V2ray/Shadowrocket/Clash/SSR免费节点订阅分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">14</span> <a href="/date/2025-05/" title="2025-05 归档">2025-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">82</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+    <section id="footer-Content">
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="site-info text-center">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <a href="/">免费VPN列表推荐 订阅机场节点官网</a> 版权所有
+                            <br />
+                            Powered by WordPress
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>
+<a href="#" class="back-to-top">
+    <i class="lni lni-chevron-up"></i>
+</a>
+<div id="preloader">
+    <div class="loader" id="loader-1"></div>
+</div>
+<script src="/assets/website/js/frontend/clashvergerev/vendor/modernizr-3.7.1.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/vendor/jquery-3.5.1-min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/popper.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/bootstrap-4.5.0.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/owl.carousel.2.3.4.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/nivo-lightbox.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/jquery.magnific-popup.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/form-validator.min.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/contact-form-script.js"></script>
+<script src="/assets/website/js/frontend/clashvergerev/main.js"></script>
+<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+<script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
