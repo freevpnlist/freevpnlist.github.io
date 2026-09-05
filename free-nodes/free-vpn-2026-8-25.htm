@@ -288,29 +288,9 @@ Clash爱人支持Windows、macOS和Linux，覆盖主流电脑操作系统，适�
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>如何合理设置 Clash 的 proxy-group 实现自动切换？</h5></div>
-    <div class="panel-body">
-        创建包含多个节点的策略组（如 `url-test` 或 `fallback`），设置合适的检测 URL 与检测频率，启用延迟优先或可用性优先策略。这样客户端会自动选择延迟最低或可用节点，提升稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 的混淆方式选择有什么讲究？</h5></div>
-    <div class="panel-body">
-        混淆方式决定流量伪装特性，不同方式适应不同封锁环境。常用方式如 tls1.2_ticket_auth 模拟 HTTPS，http_simple 模拟 HTTP 请求，根据环境选择可提高抗封锁能力。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Surfboard 在 iOS 上无法连接时如何调试？</h5></div>
-    <div class="panel-body">
-        检查 iOS 的 VPN 配置权限是否授予，确认订阅链接或手动配置填写无误；查看 Surfboard 的日志或诊断页面，查看是否为 DNS 问题、TLS 错误或节点超时，并尝试切换节点或重启应用。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>SSR 的协议和混淆组合如何选择最适合的？</h5></div>
     <div class="panel-body">
         选择模拟 HTTPS 或 HTTP 的混淆方式，再搭配 AEAD 或协议插件，可以隐藏流量特征并提高抗封锁能力。不同网络环境需测试，选择最稳定和可靠的组合。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VLESS + Reality 模式与 TLS 模式有何不同？</h5></div>
-    <div class="panel-body">
-        Reality 模式通过伪造握手和真实网站特征提升隐蔽性，TLS 模式侧重加密和传输效率。Reality 更难被 DPI 检测，适合高封锁环境，TLS 模式在稳定性和速度上更优。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>PassWall2 如何实现自动节点切换？</h5></div>
@@ -318,14 +298,19 @@ Clash爱人支持Windows、macOS和Linux，覆盖主流电脑操作系统，适�
         通过延迟测速和策略组配置，PassWall2 可自动切换到延迟最低的节点。这样用户无需手动操作，即可在访问网页、视频或游戏时保持高速和稳定连接，优化网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Quantumult X 的主要功能是什么？</h5></div>
-    <div class="panel-body">
-        Quantumult X 是一款功能极其强大的 iOS 网络代理应用，支持多种协议和脚本扩展。它可以通过规则分流、广告屏蔽、请求重写等方式优化网络体验。Quantumult X 常被技术用户用于高级自动化与自定义代理策略。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>SSR 如何防止流量被 DPI 检测？</h5></div>
     <div class="panel-body">
         通过协议插件和混淆方式可以模拟正常 HTTPS 或 HTTP 流量，隐藏真实流量特征。合理配置混淆插件和加密方式，可以有效绕过 DPI 检测，保证连接稳定性和长期可用性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Surfboard 在 iOS 上无法连接时如何调试？</h5></div>
+    <div class="panel-body">
+        检查 iOS 的 VPN 配置权限是否授予，确认订阅链接或手动配置填写无误；查看 Surfboard 的日志或诊断页面，查看是否为 DNS 问题、TLS 错误或节点超时，并尝试切换节点或重启应用。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>VLESS + Reality 模式与 TLS 模式有何不同？</h5></div>
+    <div class="panel-body">
+        Reality 模式通过伪造握手和真实网站特征提升隐蔽性，TLS 模式侧重加密和传输效率。Reality 更难被 DPI 检测，适合高封锁环境，TLS 模式在稳定性和速度上更优。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Mellow 如何通过配置实现多出口分流？</h5></div>
@@ -333,9 +318,24 @@ Clash爱人支持Windows、macOS和Linux，覆盖主流电脑操作系统，适�
         Mellow 可在配置文件中定义多个 outbound，并结合 routing 规则实现按域名、IP 或策略组分流。这样不同类型的流量可走不同节点，提高使用体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 的混淆方式选择有什么讲究？</h5></div>
+    <div class="panel-body">
+        混淆方式决定流量伪装特性，不同方式适应不同封锁环境。常用方式如 tls1.2_ticket_auth 模拟 HTTPS，http_simple 模拟 HTTP 请求，根据环境选择可提高抗封锁能力。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>PassWall2 的节点测速结果如何影响分流？</h5></div>
     <div class="panel-body">
-        PassWall2 会根据节点延迟和成功率自动调整策略组选择最优节点。测速结果直接影响程序选择出口，从而提高连接速度和稳定性。    </div>
+        PassWall2 会根据节点延迟和成功率自动调整策略组选择最优节点。测速结果直接影响程序选择出口，从而提高连接速度和稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>如何合理设置 Clash 的 proxy-group 实现自动切换？</h5></div>
+    <div class="panel-body">
+        创建包含多个节点的策略组（如 `url-test` 或 `fallback`），设置合适的检测 URL 与检测频率，启用延迟优先或可用性优先策略。这样客户端会自动选择延迟最低或可用节点，提升稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Quantumult X 的主要功能是什么？</h5></div>
+    <div class="panel-body">
+        Quantumult X 是一款功能极其强大的 iOS 网络代理应用，支持多种协议和脚本扩展。它可以通过规则分流、广告屏蔽、请求重写等方式优化网络体验。Quantumult X 常被技术用户用于高级自动化与自定义代理策略。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -383,16 +383,16 @@ Clash爱人支持Windows、macOS和Linux，覆盖主流电脑操作系统，适�
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-11.htm" title="免费VPN列表推荐 | 8月11日21.6M/S|免费Clash节点/Singbox节点/SSR节点/Shadowrocket节点/V2ray节点/Trojan节点免费节点订阅分享">免费VPN列表推荐 | 8月11日21.6M/S|免费Clash节点/Singbox节点/SSR节点/Shadowrocket节点/V2ray节点/Trojan节点免费节点订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-8-vpn-free.htm" title="免费VPN列表推荐 | 8月8日18.1M/S|免费V2ray节点/Trojan节点/Shadowrocket节点/SSR节点/Clash节点/Singbox节点免费节点订阅分享">免费VPN列表推荐 | 8月8日18.1M/S|免费V2ray节点/Trojan节点/Shadowrocket节点/SSR节点/Clash节点/Singbox节点免费节点订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-30-vpn-free.htm" title="免费VPN列表推荐 | 7月30日20.3M/S|免费Trojan节点/SSR节点/V2ray节点/Singbox节点/Clash节点/Shadowrocket节点免费节点订阅分享">免费VPN列表推荐 | 7月30日20.3M/S|免费Trojan节点/SSR节点/V2ray节点/Singbox节点/Clash节点/Shadowrocket节点免费节点订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-24-free-node-subscribe.htm" title="免费VPN列表推荐 | 8月24日19.5M/S|免费Clash节点/Shadowrocket节点/SSR节点/V2ray节点/Singbox节点/Trojan节点免费节点订阅分享">免费VPN列表推荐 | 8月24日19.5M/S|免费Clash节点/Shadowrocket节点/SSR节点/V2ray节点/Singbox节点/Trojan节点免费节点订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-27-mianfei-vpn.htm" title="免费VPN列表推荐 | 7月27日19.6M/S|免费V2ray节点/Clash节点/Trojan节点/Shadowrocket节点/Singbox节点/SSR节点免费节点订阅分享">免费VPN列表推荐 | 7月27日19.6M/S|免费V2ray节点/Clash节点/Trojan节点/Shadowrocket节点/Singbox节点/SSR节点免费节点订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-10-free-node-subscribe.htm" title="免费VPN列表推荐 | 8月10日18.4M/S|免费Clash节点/Singbox节点/Trojan节点/SSR节点/Shadowrocket节点/V2ray节点免费节点订阅分享">免费VPN列表推荐 | 8月10日18.4M/S|免费Clash节点/Singbox节点/Trojan节点/SSR节点/Shadowrocket节点/V2ray节点免费节点订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-28-node-share.htm" title="免费VPN列表推荐 | 8月28日21.1M/S|免费SSR节点/Trojan节点/Clash节点/Shadowrocket节点/Singbox节点/V2ray节点免费节点订阅分享">免费VPN列表推荐 | 8月28日21.1M/S|免费SSR节点/Trojan节点/Clash节点/Shadowrocket节点/Singbox节点/V2ray节点免费节点订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-7-29.htm" title="免费VPN列表推荐 | 7月29日19.2M/S|免费Trojan节点/Singbox节点/V2ray节点/Shadowrocket节点/SSR节点/Clash节点免费节点订阅分享">免费VPN列表推荐 | 7月29日19.2M/S|免费Trojan节点/Singbox节点/V2ray节点/Shadowrocket节点/SSR节点/Clash节点免费节点订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-21.htm" title="免费VPN列表推荐 | 8月21日19.1M/S|免费Trojan节点/V2ray节点/SSR节点/Clash节点/Singbox节点/Shadowrocket节点免费节点订阅分享">免费VPN列表推荐 | 8月21日19.1M/S|免费Trojan节点/V2ray节点/SSR节点/Clash节点/Singbox节点/Shadowrocket节点免费节点订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-18-vpn-node.htm" title="免费VPN列表推荐 | 8月18日23M/S|免费Shadowrocket节点/Clash节点/V2ray节点/SSR节点/Trojan节点/Singbox节点免费节点订阅分享">免费VPN列表推荐 | 8月18日23M/S|免费Shadowrocket节点/Clash节点/V2ray节点/SSR节点/Trojan节点/Singbox节点免费节点订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-vpn-2026-8-31.htm" title="免费VPN列表推荐 | 8月31日21.6M/S|免费SSR节点/Clash节点/Shadowrocket节点/V2ray节点/Singbox节点/Trojan节点免费节点订阅分享">免费VPN列表推荐 | 8月31日21.6M/S|免费SSR节点/Clash节点/Shadowrocket节点/V2ray节点/Singbox节点/Trojan节点免费节点订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-4-vpn-free.htm" title="免费VPN列表推荐 | 9月4日20.9M/S|免费Clash节点/Trojan节点/V2ray节点/Shadowrocket节点/Singbox节点/SSR节点免费节点订阅分享">免费VPN列表推荐 | 9月4日20.9M/S|免费Clash节点/Trojan节点/V2ray节点/Shadowrocket节点/Singbox节点/SSR节点免费节点订阅分享</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/top-vpn-2026-8-19.htm" title="免费VPN列表推荐 | 8月19日23M/S|免费Singbox节点/Clash节点/Shadowrocket节点/V2ray节点/SSR节点/Trojan节点免费节点订阅分享">免费VPN列表推荐 | 8月19日23M/S|免费Singbox节点/Clash节点/Shadowrocket节点/V2ray节点/SSR节点/Trojan节点免费节点订阅分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-19-free-vpn.htm" title="免费VPN列表推荐 | 7月19日20.2M/S|免费SSR节点/Trojan节点/Clash节点/V2ray节点/Singbox节点/Shadowrocket节点免费节点订阅分享">免费VPN列表推荐 | 7月19日20.2M/S|免费SSR节点/Trojan节点/Clash节点/V2ray节点/Singbox节点/Shadowrocket节点免费节点订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/mianfei-vpn-2026-8-23.htm" title="免费VPN列表推荐 | 8月23日19.2M/S|免费V2ray节点/Trojan节点/Clash节点/Shadowrocket节点/Singbox节点/SSR节点免费节点订阅分享">免费VPN列表推荐 | 8月23日19.2M/S|免费V2ray节点/Trojan节点/Clash节点/Shadowrocket节点/Singbox节点/SSR节点免费节点订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-vpn-2026-8-25.htm" title="免费VPN列表推荐 | 8月25日21.7M/S|免费Trojan节点/Clash节点/V2ray节点/SSR节点/Singbox节点/Shadowrocket节点免费节点订阅分享">免费VPN列表推荐 | 8月25日21.7M/S|免费Trojan节点/Clash节点/V2ray节点/SSR节点/Singbox节点/Shadowrocket节点免费节点订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-16-node-share.htm" title="免费VPN列表推荐 | 8月16日21.4M/S|免费Trojan节点/Clash节点/Shadowrocket节点/SSR节点/V2ray节点/Singbox节点免费节点订阅分享">免费VPN列表推荐 | 8月16日21.4M/S|免费Trojan节点/Clash节点/Shadowrocket节点/SSR节点/V2ray节点/Singbox节点免费节点订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/top-vpn-2026-9-3.htm" title="免费VPN列表推荐 | 9月3日18.6M/S|免费SSR节点/Singbox节点/Shadowrocket节点/Trojan节点/Clash节点/V2ray节点免费节点订阅分享">免费VPN列表推荐 | 9月3日18.6M/S|免费SSR节点/Singbox节点/Shadowrocket节点/Trojan节点/Clash节点/V2ray节点免费节点订阅分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-27.htm" title="免费VPN列表推荐 | 8月27日21.2M/S|免费Trojan节点/V2ray节点/SSR节点/Singbox节点/Shadowrocket节点/Clash节点免费节点订阅分享">免费VPN列表推荐 | 8月27日21.2M/S|免费Trojan节点/V2ray节点/SSR节点/Singbox节点/Shadowrocket节点/Clash节点免费节点订阅分享</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -404,10 +404,10 @@ Clash爱人支持Windows、macOS和Linux，覆盖主流电脑操作系统，适�
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
+                <h4><span class="badge" style="float: right;">4</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">13</span> <a href="/date/2026-07/" title="2026-07 归档">2026-07</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
             </li>
                     </ul>
     </div>
